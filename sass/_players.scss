@@ -46,7 +46,7 @@
 		background: rgba(111, 141, 81, 0.7);
 	}
 
-	:last-child > & {
+	.banker-present :last-child > & {
 		background: rgba(0, 0, 0, 0.3);
 	}
 }

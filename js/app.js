@@ -60,19 +60,21 @@
         };
 
         $scope.pay = function (amount, playerIndex) {
-            var payees, canAfford;
+            var payees, canAfford, bankerIndex;
+
+            bankerIndex = $scope.players.length - 1;
             payees = []
-            for (var i = $scope.players.length - 1; i >= 0; i--) {
+            for (var i = bankerIndex; i >= 0; i--) {
                 if ($scope.players[i].recieve) {
                     payees.push(i);
                 }
             }
-                console.log(payees.length);
+
             if (!payees.length) {
                 $scope.alert('You must select 1 or more payees');
             }
 
-            if (playerIndex !== 0) {
+            if (playerIndex !== bankerIndex) {
                 canAfford = $scope.checkBalance(playerIndex, payees.length, amount);
             };
 
@@ -81,11 +83,11 @@
             }
 
             for (var i = payees.length - 1; i >= 0; i--) {
-                if (payees[i] !== 0) {
+                if (payees[i] !== bankerIndex) {
                     $scope.players[payees[i]].money += amount;
                 }
 
-                if (playerIndex !== 0) {
+                if (playerIndex !== bankerIndex) {
                     $scope.players[playerIndex].money += -amount;
                 }
 
@@ -93,6 +95,7 @@
             };
 
             $scope.players[playerIndex].pay = false;
+            $scope.amount = '';
         }
 
         $scope.checkBalance = function (playerIndex, numOfPeople, amount) {
@@ -108,20 +111,20 @@
             $scope.players.splice(player, 1)
         };
 
-        $scope.addPlayer(true); //add banker
-
+        $scope.start = function () {
+            $scope.addPlayer(true); //add banker
+        }
     });
 
-    app.directive('payout', function () {
+    app.directive('start', function () {
         return {
             restrict: "A",
             link: function (scope, element, attributes) {
                 element.bind('click', function (e) {
-                    var $playerDiv;
 
-                    $playerDiv = $("#" + $(this).data('player'));
+                    $('.pre-game-form').addClass('ng-hide');
+                    $('.players').addClass('banker-present');
 
-                    $playerDiv.toggleClass('payout-on');
                 });
             }
         }

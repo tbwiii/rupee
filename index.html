@@ -14,10 +14,13 @@
             <h1>Mr. Teller<span>Monopoly Banker</span></h1>
             <div class="top-bar">
                 <div class="wrap">
-                    <form ng-submit="addPlayer()">
-                        <input type="text" name="player-name" ng-model="newPlayer">
-                        <button type="submit">Add Player</button>
-                    </form>
+                    <div class="pre-game-form">
+                        <form ng-submit="addPlayer()">
+                            <input type="text" name="player-name" ng-model="newPlayer">
+                            <button type="submit">Add Player</button>
+                            <button ng-click="start()" start>Start Game</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </header>

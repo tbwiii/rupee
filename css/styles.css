@@ -398,7 +398,7 @@ button {
     background: rgba(238, 193, 97, 0.7); }
   :nth-child(5) > .player-name {
     background: rgba(111, 141, 81, 0.7); }
-  :last-child > .player-name {
+  .banker-present :last-child > .player-name {
     background: rgba(0, 0, 0, 0.3); }
 
 .player-info {
