@@ -1,0 +1,24 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 16px;
+	background: url('../img/fibers.png');
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+}
+
+.wrap {
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.content {
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}

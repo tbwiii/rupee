@@ -1,0 +1,150 @@
+.player {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	width: 23%;
+	margin: 1% 1%;
+	background: rgba(0, 0, 0, 0.05);
+	border: solid 5px #FFF;
+	border-radius: 3%;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+.player-name {
+	height: 3.5rem;
+	margin: 0;
+	padding: 0 1em;
+	font-size: 1.6em;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: #FFF;
+	text-shadow: 1px 1px #000;
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 3.5rem;
+	background: rgba(0, 0, 0, 0.05);
+
+	:first-child > & {
+		background: rgba(66, 91, 165, 0.7);
+	}
+
+	:nth-child(2) > & {
+		background: rgba(206, 60, 60, 0.7);
+	}
+
+	:nth-child(3) > & {
+		background: rgba(163, 75, 118, 0.7);
+	}
+
+	:nth-child(4) > & {
+		background: rgba(238, 193, 97, 0.7);
+	}
+
+	:nth-child(5) > & {
+		background: rgba(111, 141, 81, 0.7);
+	}
+
+	:last-child > & {
+		background: rgba(0, 0, 0, 0.3);
+	}
+}
+
+.player-info {
+	height: 14rem;
+	padding: 1em;
+
+	.payout-on & {
+		opacity: 0.05;
+	}
+}
+
+.blurred {
+	color: #DDD;
+}
+
+.player-worth {
+	margin: 1.5em 0;
+	font-size: 1.6em;
+	text-align: center;
+}
+
+.payout, .getPaid {
+	position: absolute;
+	top: 3.5rem;
+	left: 0;
+	width: 100%;
+	height: 12rem;
+
+	text-align: center;
+	color: #FFF;
+}
+
+.payout {
+	padding: 2.4em 1em 0;
+	background: rgba(255, 0, 0, 0.35);
+
+
+	.dollar-sign {
+		display: inline-block;
+		width: 10%;
+	}
+
+	input {
+		display: inline-block;
+		width: 90%;
+		padding: 0.3rem;
+		font-size: 1.2em;
+		margin-bottom: 0.5rem;
+		color: #333;
+	}
+}
+
+.pay-button {
+	position: absolute;
+	bottom: 1.5em;
+	left: 0em;
+	width: 86%;
+	margin: 0 8%;
+	padding: 0.5em 0;
+	color: #FFF;
+	text-transform: uppercase;
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+}
+
+.getPaid {
+	font-size: 6em;
+	font-weight: bold;
+	line-height: 12rem;
+	background: rgba(0, 255, 0, 0.35);
+}
+
+.player-options {
+	position: absolute;
+	bottom: 0;
+	z-index: 5;
+	width: 100%;
+
+	button {
+		display: inline-block;
+		float: left;
+		margin: 0;
+		height: 2rem;
+		color: #333;
+	}
+}
+
+.player-options--recieve,.player-options--pay {
+	width: 50%;
+}
+
+.player-options--recieve {
+	background: rgba(0, 255, 0, 0.35);
+}
+
+.player-options--pay {
+	background: rgba(255, 0, 0, 0.35);
+}
+

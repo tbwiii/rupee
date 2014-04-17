@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="banker">
+    <head>
+        <title>Monopoly Banker</title>
+
+        <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/styles.css">
+
+
+
+    </head>
+    <body ng-controller="gameCtrl">
+        <header class="master-header">
+            <h1>Mr. Teller<span>Monopoly Banker</span></h1>
+            <div class="top-bar">
+                <div class="wrap">
+                    <form ng-submit="addPlayer()">
+                        <input type="text" name="player-name" ng-model="newPlayer">
+                        <button type="submit">Add Player</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+			<div class="players" >
+                <div class="wrap">
+                    <div class="player" id="{{$index}}" ng-repeat="player in players" ng-class="{ blurred: player.pay || player.recieve }">
+                        <h2 class="player-name">{{ player.name }}</h2>
+
+                        <div class="player-info">
+                            <h3 class="player-worth" ng-if="player.money">{{ player.money | currency }}</h3>
+
+                        </div>
+
+                        <div class="payout" ng-show="player.pay">
+                            <form ng-submit>
+                                <span class="dollar-sign">$</span><input type="number" ng-model="amount">
+                                <button class="pay-button" ng-click="pay(amount, $index)">Pay</button>
+                            </form>
+                        </div>
+
+                        <div class="getPaid" ng-show="player.recieve">
+                            <span>$</span>
+                        </div>
+
+                        <div class="player-options">
+                            <button class="player-options--pay" ng-click="setPay($index)">-</button>
+                            <button class="player-options--recieve" ng-click="setRecieve($index)">+</button>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+        <script type="text/javascript" src="js/angular.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
+</html>

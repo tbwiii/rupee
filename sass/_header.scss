@@ -1,0 +1,25 @@
+.master-header {
+	padding: 1em 0 0;
+	background: url('../img/header-bg.png') #C8E2D1;
+}
+
+.master-header h1 {
+	font-family: 'Julius Sans One', sans-serif;
+	font-size: 2.6em;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 1;
+	letter-spacing: 1.5%;
+}
+
+.master-header h1 span {
+	display: block;
+	font-size: 0.5em;
+}
+
+
+.top-bar {
+	padding: 1em 0;
+	background: rgba(92,115,94, 0.4) ;
+}
