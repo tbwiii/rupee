@@ -324,7 +324,9 @@ td, th {
 
 body {
   font-size: 16px;
-  background: url('../img/fibers.png'); }
+  background: url('../img/fibers.png');
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased; }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0; }
@@ -338,6 +340,7 @@ h1, h2, h3, h4, h5, h6 {
   font-smoothing: antialiased; }
 
 button {
+  display: inline-block;
   padding: 0 0.895rem;
   color: #FFF;
   font-size: 0.8em;
@@ -351,7 +354,8 @@ button {
   box-shadow: 1px 1px rgba(0, 0, 0, 0.1); }
 
 .master-header {
-  background: url('../img/header-bg.png') #C8E2D1; }
+  background: url('../img/header-bg.png') #C8E2D1;
+  position: relative; }
 
 .master-header h1 {
   margin: 0;
@@ -360,14 +364,17 @@ button {
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
-  line-height: 2;
-  letter-spacing: 1.5%; }
+  line-height: 5rem;
+  letter-spacing: 1.5%;
+  -webkit-font-smoothing: initial;
+  font-smoothing: initial; }
 
 .master-header h1 span {
   display: block;
   font-size: 0.5em; }
 
 .top-bar {
+  position: relative;
   padding: 0 0;
   height: 3.5em;
   line-height: 3.5em;
@@ -425,11 +432,13 @@ button {
   :nth-child(2) > .player-name {
     background: rgba(206, 60, 60, 0.7); }
   :nth-child(3) > .player-name {
-    background: rgba(163, 75, 118, 0.7); }
-  :nth-child(4) > .player-name {
-    background: rgba(238, 193, 97, 0.7); }
-  :nth-child(5) > .player-name {
     background: rgba(111, 141, 81, 0.7); }
+  :nth-child(4) > .player-name {
+    background: rgba(163, 75, 118, 0.7); }
+  :nth-child(5) > .player-name {
+    background: rgba(238, 193, 97, 0.7); }
+  :nth-child(6) > .player-name {
+    background: rgba(255, 156, 64, 0.7); }
   .banker-present :last-child > .player-name {
     background: rgba(0, 0, 0, 0.3); }
 
@@ -478,7 +487,8 @@ button {
     float: left;
     margin: 0;
     height: 2rem;
-    color: #333;
+    color: #555;
+    text-shadow: none;
     border-radius: 0;
     box-shadow: 0; }
 
@@ -492,3 +502,35 @@ button {
 
 .player-options--pay {
   background: rgba(255, 0, 0, 0.35); }
+
+.alert {
+  position: fixed;
+  top: -5rem;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  color: #FFF;
+  background: #F5BC5B;
+  -webkit-transition: top 0.3s linear;
+  transition: top 0.3s linear; }
+  .alert.show-alert {
+    top: 0; }
+
+.alert-close-button {
+  position: absolute;
+  top: 50%;
+  opacity: 0.7;
+  font-size: 0.6em;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin-left: 2em;
+  font-weight: normal;
+  text-shadow: none;
+  background: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; }

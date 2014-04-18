@@ -1,5 +1,6 @@
 .master-header {
 	background: url('../img/header-bg.png') #C8E2D1;
+	position: relative;
 }
 
 .master-header h1 {
@@ -9,8 +10,10 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	text-align: center;
-	line-height: 2;
+	line-height: 5rem;
 	letter-spacing: 1.5%;
+	-webkit-font-smoothing: initial;
+	font-smoothing: initial;
 }
 
 .master-header h1 span {
@@ -19,6 +22,7 @@
 }
 
 .top-bar {
+	position: relative;
 	padding: 0 0;
 	height: 3.5em;
 	line-height: 3.5em;

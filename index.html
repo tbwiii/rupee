@@ -27,6 +27,10 @@
                         </form>
                     </div>
                 </div>
+            </div> <!-- end .top-bar -->
+            <div class="alert" ng-class="{'show-alert': alertText}">
+                <span class="alert-message">{{ alertText }}</span>
+                <button class="alert-close-button" close-alert>close</button>
             </div>
         </header>
         <div class="content">
@@ -49,14 +53,13 @@
                         </div>
 
                         <div class="player-options">
-                            <button class="player-options--pay" ng-click="setPay($index)"><span ng-hide="player.pay">-</span></button>
-                            <button class="player-options--recieve" ng-click="setRecieve($index)"><span ng-hide="player.recieve">+</span></button>
+                            <button class="player-options--pay" ng-click="setPay($index)"><span ng-hide="player.pay">Pay</span></button>
+                            <button class="player-options--recieve" ng-click="setRecieve($index)"><span ng-hide="player.recieve">Profit</span></button>
                         </div>
                     </div>
                 </div>
 			</div>
         </div>
-
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
         <script type="text/javascript" src="js/angular.js"></script>
         <script type="text/javascript" src="js/app.js"></script>

@@ -6,6 +6,7 @@
     	$scope.players = [];
         $scope.amount = '';
         $scope.gameStarted = false;
+        $scope.alertText = '';
 
     	$scope.addPlayer = function (banker) {
             var name;
@@ -36,7 +37,7 @@
         };
 
         $scope.alert = function (message) {
-            globalFuncs.alert(message);
+            globalFuncs.alert($scope, message);
         };
 
         $scope.setRecieve = function (index) {
@@ -77,10 +78,12 @@
 
             if (!payees.length) {
                 $scope.alert('You must select a card or cards that will receive the money');
+                return false;
             }
 
             if (!payers.length) {
-                $scope.alert('You must select a card or cards that money will come from');
+                $scope.alert('You must select a card or cards that will pay');
+                return false;
             };
 
             names = $scope.checkBalance(payers, payees.length, amount, bankerIndex)
@@ -141,17 +144,24 @@
         };
 
         $scope.start = function () {
+
+            if ($scope.players.length < 2) {
+                $scope.alert('Please add two or more players.');
+                return false;
+            };
+
             $scope.gameStarted = true;
             $scope.addPlayer(true); //add banker
         }
     });
 
-    app.directive('directiveTemplate', function () {
+    app.directive('closeAlert', function () {
         return {
             restrict: "A",
             link: function (scope, element, attributes) {
                 element.bind('click', function (e) {
-
+                    scope.alertText = '';
+                    scope.$apply();
                 });
             }
         }
@@ -159,8 +169,13 @@
 
     app.factory('globalFuncs', function() {
         return {
-            alert: function(text) {
-                alert(text);
+            alert: function alert ($scope, text) {
+                $scope.alertText = text;
+
+                window.setTimeout(function () {
+                    $scope.alertText = '';
+                    $scope.$apply();
+                }, 2000);
             }
         };
     });
