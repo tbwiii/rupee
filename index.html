@@ -6,26 +6,31 @@
         <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/styles.css">
 
-
-
     </head>
-    <body ng-controller="gameCtrl">
+    <body ng-controller="gameCtrl" ng-view>
         <header class="master-header">
-            <h1>Mr. Teller<span>Monopoly Banker</span></h1>
+            <h1>Monopoly Banker</h1>
             <div class="top-bar">
                 <div class="wrap">
-                    <div class="pre-game-form">
+                    <div class="pre-game-form" ng-hide="gameStarted">
+                        <button class="start-game-button" ng-click="start()">Start Game</button>
                         <form ng-submit="addPlayer()">
-                            <input type="text" name="player-name" ng-model="newPlayer">
+                            <input class="player-name-input" autofocus="autofocus" type="text" name="player-name" ng-model="newPlayer" required>
                             <button type="submit">Add Player</button>
-                            <button ng-click="start()" start>Start Game</button>
+                        </form>
+                    </div>
+
+                    <div class="in-game-form" ng-show="gameStarted">
+                        <form ng-submit="pay()">
+                            <input class="amount-input" type="number" name="amount" placeholder="$" ng-model="amount" required>
+                            <button type="submit">Make Transaction</button>
                         </form>
                     </div>
                 </div>
             </div>
         </header>
         <div class="content">
-			<div class="players" >
+			<div class="players" ng-class="{'in-play': gameStarted, 'banker-present' : gameStarted}">
                 <div class="wrap">
                     <div class="player" id="{{$index}}" ng-repeat="player in players" ng-class="{ blurred: player.pay || player.recieve }">
                         <h2 class="player-name">{{ player.name }}</h2>
@@ -36,19 +41,16 @@
                         </div>
 
                         <div class="payout" ng-show="player.pay">
-                            <form ng-submit>
-                                <span class="dollar-sign">$</span><input type="number" ng-model="amount">
-                                <button class="pay-button" ng-click="pay(amount, $index)">Pay</button>
-                            </form>
+                            <span>-</span>
                         </div>
 
                         <div class="getPaid" ng-show="player.recieve">
-                            <span>$</span>
+                            <span>+</span>
                         </div>
 
                         <div class="player-options">
-                            <button class="player-options--pay" ng-click="setPay($index)">-</button>
-                            <button class="player-options--recieve" ng-click="setRecieve($index)">+</button>
+                            <button class="player-options--pay" ng-click="setPay($index)"><span ng-hide="player.pay">-</span></button>
+                            <button class="player-options--recieve" ng-click="setRecieve($index)"><span ng-hide="player.recieve">+</span></button>
                         </div>
                     </div>
                 </div>

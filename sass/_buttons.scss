@@ -1,4 +1,13 @@
 button {
+	padding: 0 0.895rem;
+	color: #FFF;
+	font-size: 0.8em;
+	line-height: 2rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	text-shadow: 1px 1px #bbb;
+	background: rgba(255, 255, 255, 0.3);
 	border: none;
-	padding: 0.2em 0.5em;
+	border-radius: 4px;
+	box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
 }

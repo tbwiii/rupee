@@ -1,10 +1,28 @@
+.players {
+	overflow: hidden;
+
+	&::after {
+		display: block;
+		position: absolute;
+		z-index: 10;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.4);
+		content: "";
+	}
+
+	&.in-play::after {
+		display: none;
+	}
+}
+
 .player {
 	position: relative;
 	float: left;
 	overflow: hidden;
 	width: 23%;
 	margin: 1% 1%;
-	background: rgba(0, 0, 0, 0.05);
+	background: rgba(255,255,255, 0.5);
 	border: solid 5px #FFF;
 	border-radius: 3%;
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
@@ -82,43 +100,19 @@
 }
 
 .payout {
-	padding: 2.4em 1em 0;
 	background: rgba(255, 0, 0, 0.35);
-
-
-	.dollar-sign {
-		display: inline-block;
-		width: 10%;
-	}
-
-	input {
-		display: inline-block;
-		width: 90%;
-		padding: 0.3rem;
-		font-size: 1.2em;
-		margin-bottom: 0.5rem;
-		color: #333;
-	}
-}
-
-.pay-button {
-	position: absolute;
-	bottom: 1.5em;
-	left: 0em;
-	width: 86%;
-	margin: 0 8%;
-	padding: 0.5em 0;
-	color: #FFF;
-	text-transform: uppercase;
-	background: rgba(0, 0, 0, 0.1);
-	border-radius: 2px;
 }
 
 .getPaid {
-	font-size: 6em;
-	font-weight: bold;
-	line-height: 12rem;
 	background: rgba(0, 255, 0, 0.35);
+}
+
+
+.payout, .getPaid {
+	font-size: 8em;
+	font-weight: bold;
+	text-shadow: -3px 2px rgba(0,0,0,0.25);
+	line-height: 11rem;
 }
 
 .player-options {
@@ -133,11 +127,17 @@
 		margin: 0;
 		height: 2rem;
 		color: #333;
+		border-radius: 0;
+		box-shadow: 0;
 	}
 }
 
 .player-options--recieve,.player-options--pay {
 	width: 50%;
+
+	&:focus {
+		outline: none
+	}
 }
 
 .player-options--recieve {

@@ -4,10 +4,12 @@
     app.controller('gameCtrl', function ($scope, globalFuncs) {
     	$scope.newPlayer = '';
     	$scope.players = [];
+        $scope.amount = '';
+        $scope.gameStarted = false;
 
     	$scope.addPlayer = function (banker) {
             var name;
-            name = banker ? 'banker' : $scope.newPlayer.toLowerCase();
+            name = banker ? 'bank' : $scope.newPlayer.toLowerCase();
 
             if (name !== '' && $scope.isAlreadyPlaying(name)) {
                 $scope.players[$scope.players.length] = {
@@ -50,20 +52,23 @@
 
             if ($scope.players[index].pay) {
                 $scope.players[index].recieve = false;
-
-                for (var i = $scope.players.length - 1; i >= 0; i--) {
-                    if (i !== index) {
-                        $scope.players[i].pay = false;
-                    };
-                };
             }
         };
 
-        $scope.pay = function (amount, playerIndex) {
-            var payees, canAfford, bankerIndex;
+        $scope.pay = function () {
+            var payees, canAfford, bankerIndex, amount, names;
+            amount = Math.abs($scope.amount);
 
             bankerIndex = $scope.players.length - 1;
-            payees = []
+            payers = [];
+            payees = [];
+
+            for (var i = bankerIndex; i >= 0; i--) {
+                if ($scope.players[i].pay) {
+                    payers.push(i);
+                }
+            }
+
             for (var i = bankerIndex; i >= 0; i--) {
                 if ($scope.players[i].recieve) {
                     payees.push(i);
@@ -71,40 +76,64 @@
             }
 
             if (!payees.length) {
-                $scope.alert('You must select 1 or more payees');
+                $scope.alert('You must select a card or cards that will receive the money');
             }
 
-            if (playerIndex !== bankerIndex) {
-                canAfford = $scope.checkBalance(playerIndex, payees.length, amount);
+            if (!payers.length) {
+                $scope.alert('You must select a card or cards that money will come from');
             };
 
-            if (!canAfford) {
+            names = $scope.checkBalance(payers, payees.length, amount, bankerIndex)
+
+            if (names) {
+                $scope.alert(names + ' cannot afford that.');
                 return false;
             }
 
             for (var i = payees.length - 1; i >= 0; i--) {
                 if (payees[i] !== bankerIndex) {
-                    $scope.players[payees[i]].money += amount;
-                }
-
-                if (playerIndex !== bankerIndex) {
-                    $scope.players[playerIndex].money += -amount;
+                    $scope.players[payees[i]].money += (amount * payers.length);
                 }
 
                 $scope.players[payees[i]].recieve = false;
             };
 
-            $scope.players[playerIndex].pay = false;
+            for (var i = payers.length - 1; i >= 0; i--) {
+                if (payers[i] !== bankerIndex) {
+                    $scope.players[payers[i]].money -= (amount * payees.length);
+                }
+
+                $scope.players[payers[i]].pay = false;
+            };
+
             $scope.amount = '';
         }
 
-        $scope.checkBalance = function (playerIndex, numOfPeople, amount) {
-            if ($scope.players[playerIndex].money >= (numOfPeople * amount)) {
-                return true;
-            } else {
-                $scope.alert("Player can't afford that")
-                return false;
+        $scope.checkBalance = function (payers, numOfPayees, amount, bankerIndex) {
+            var names = [];
+            for (var i = payers.length - 1, payer; i >= 0; i--) {
+                payer = payers[i];
+                if (payer !== bankerIndex && $scope.players[payer].money < (numOfPayees * amount)) {
+                    names.push($scope.players[payer].name);
+                }
             }
+
+            if (names.length) {
+
+                if (names.length > 1) {
+                    names[names.length - 1] = 'and ' + names[names.length - 1];
+                }
+
+                if (names.length > 2) {
+                    names = names.join(', ');
+                } else {
+                    names = names.join(' ');
+                }
+
+                return names
+            } else {
+                return false
+            };
         }
 
         $scope.removePlayer = function (player) {
@@ -112,18 +141,16 @@
         };
 
         $scope.start = function () {
+            $scope.gameStarted = true;
             $scope.addPlayer(true); //add banker
         }
     });
 
-    app.directive('start', function () {
+    app.directive('directiveTemplate', function () {
         return {
             restrict: "A",
             link: function (scope, element, attributes) {
                 element.bind('click', function (e) {
-
-                    $('.pre-game-form').addClass('ng-hide');
-                    $('.players').addClass('banker-present');
 
                 });
             }

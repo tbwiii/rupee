@@ -1,15 +1,15 @@
 .master-header {
-	padding: 1em 0 0;
 	background: url('../img/header-bg.png') #C8E2D1;
 }
 
 .master-header h1 {
+	margin: 0;
 	font-family: 'Julius Sans One', sans-serif;
 	font-size: 2.6em;
 	font-weight: bold;
 	text-transform: uppercase;
 	text-align: center;
-	line-height: 1;
+	line-height: 2;
 	letter-spacing: 1.5%;
 }
 
@@ -18,8 +18,25 @@
 	font-size: 0.5em;
 }
 
-
 .top-bar {
-	padding: 1em 0;
+	padding: 0 0;
+	height: 3.5em;
+	line-height: 3.5em;
 	background: rgba(92,115,94, 0.4) ;
+}
+
+.pre-game-form  form{
+	float: right;
+}
+
+.player-name-input, .amount-input {
+	margin-right: 1em;
+	padding: 0 0.5em;
+	height: 2em;
+	background: rgba(255, 255, 255, 0.6);
+	border: none;
+}
+
+.in-game-form {
+	text-align: center;
 }
