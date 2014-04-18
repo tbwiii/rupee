@@ -387,17 +387,12 @@ button {
   text-align: center; }
 
 .players {
-  overflow: hidden; }
-  .players::after {
-    display: block;
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    content: ""; }
-  .players.in-play::after {
-    display: none; }
+  text-align: center;
+  opacity: 0.5;
+  pointer-events: none; }
+  .players.in-play {
+    opacity: 1;
+    pointer-events: initial; }
 
 .player {
   position: relative;

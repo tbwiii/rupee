@@ -1,18 +1,11 @@
 .players {
-	overflow: hidden;
+	text-align: center;
+	opacity: 0.5;
+	pointer-events: none;
 
-	&::after {
-		display: block;
-		position: absolute;
-		z-index: 10;
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.4);
-		content: "";
-	}
-
-	&.in-play::after {
-		display: none;
+	&.in-play {
+		opacity: 1;
+		pointer-events: initial;
 	}
 }
 
