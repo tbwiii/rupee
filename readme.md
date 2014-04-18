@@ -1,7 +1,7 @@
 #The Banker
 
-A small angular app that acts as the banker for monopoly games; specifically the "Here and Now" edition that has that annoyingly slow machine.
+A small angular app that acts as the banker for Monopoly games; specifically the "Here and Now" edition that has that annoyingly slow card machine.
 
 ![Boooooooo](https://raw.github.com/tbwiii/the-banker/master/img/slow-thing.jpg)
 
-Try it out at [tbwiii.github.io/monopoly-banker/](http://tbwiii.github.io/monopoly-banker/)
+Try it out at [tbwiii.github.io/the-banker/](http://tbwiii.github.io/the-banker/)
