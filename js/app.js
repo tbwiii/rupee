@@ -10,7 +10,7 @@
 
     	$scope.addPlayer = function (banker) {
             var name;
-            name = banker ? 'bank' : $scope.newPlayer.toLowerCase();
+            name = banker ? 'bank' : $scope.properCase($scope.newPlayer);
 
             if (name !== '' && $scope.isAlreadyPlaying(name)) {
                 $scope.players[$scope.players.length] = {
@@ -23,6 +23,10 @@
                 $scope.newPlayer = '';
             }
     	};
+
+        $scope.properCase = function (string) {
+            return string.charAt(0).toUpperCase() + string.slice(1)
+        }
 
         $scope.isAlreadyPlaying = function (name) {
             var isUnique = true;
